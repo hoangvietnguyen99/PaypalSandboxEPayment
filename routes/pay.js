@@ -16,8 +16,8 @@ router.post('/', function(req, res, next) {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:3000/pay/success",
-            "cancel_url": "http://localhost:3000/pay/cancel"
+            "return_url": "https://nhviet1712905ppsandbox.herokuapp.com/pay/success",
+            "cancel_url": "https://nhviet1712905ppsandbox.herokuapp.com/pay/cancel"
         },
         "transactions": [{
             "item_list": {
@@ -37,7 +37,7 @@ router.post('/', function(req, res, next) {
         }]
     };
 
-    paypal.payment.create(create_payment_json, function (error, payment) {
+    paypal.payment.create(create_payment_json, function(error, payment) {
         if (error) {
             throw error;
         } else {
@@ -54,7 +54,7 @@ router.post('/', function(req, res, next) {
 router.get('/success', function(req, res, next) {
     const payerId = req.query.PayerID;
     const paymentId = req.query.paymentId;
-    
+
     const execute_payment_json = {
         "payer_id": payerId,
         "transactions": [{
@@ -68,7 +68,7 @@ router.get('/success', function(req, res, next) {
     paypal.payment.execute(paymentId, execute_payment_json, function(error, payment) {
         if (error) {
             console.log(error.response);
-            throw(error);
+            throw (error);
         } else {
             //console.log('Get Payment Response');
             //console.log(JSON.stringify(payment));
