@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  h2 Product:
+  h3 Red Dress
+  h3 Buy for $100
+  form(action="/pay", method="post")
+    input(type="submit", value="Buy")
